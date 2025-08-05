@@ -1,6 +1,7 @@
 import POM.AuthorizationPOM;
 import POM.MainPagePOM;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,12 +13,16 @@ public class PersonalAccountTest {
 
     private WebDriver driver;
 
-    // Проверь переход по клику на «Личный кабинет».
-    @Test
-    public void inPersonalAccountTest(){
+    @BeforeEach
+    public void runDriver(){
         driver = RunBrowsers.getWebDriver(Browser.CHROME);
         driver.manage().window().maximize();
         driver.get("https://stellarburgers.nomoreparties.site/");
+    }
+
+    // Проверь переход по клику на «Личный кабинет».
+    @Test
+    public void inPersonalAccountTest(){
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickPersonalAccountButton(); // Нажать на кнопку "Личный Кабинет"
@@ -32,9 +37,6 @@ public class PersonalAccountTest {
     // Проверь переход по клику на «Конструктор».
     @Test
     public void inTransitionConstructorTest() {
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickPersonalAccountButton(); // Нажать на кнопку "Личный Кабинет"
@@ -49,9 +51,6 @@ public class PersonalAccountTest {
     // Проверь переход по клику на логотип Stellar Burgers.
     @Test
     public void inTransitionLogoTest() {
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickPersonalAccountButton(); // Нажать на кнопку "Личный Кабинет"

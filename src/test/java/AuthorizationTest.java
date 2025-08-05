@@ -3,6 +3,7 @@ import POM.MainPagePOM;
 import POM.RecoverPasswordPOM;
 import POM.RegistrationPOM;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,12 +14,16 @@ public class AuthorizationTest {
 
     private WebDriver driver;
 
-    // Авторизация пользователя. Вход по кнопке «Войти в аккаунт» на главной.
-    @Test
-    public void authorizationTest(){
+    @BeforeEach
+    public void runDriver(){
         driver = RunBrowsers.getWebDriver(Browser.CHROME);
         driver.manage().window().maximize();
         driver.get("https://stellarburgers.nomoreparties.site/");
+    }
+
+    // Авторизация пользователя. Вход по кнопке «Войти в аккаунт» на главной.
+    @Test
+    public void authorizationTest(){
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickToInButton(); // Нажать на кнопку "Войти в аккаунт"
@@ -38,9 +43,6 @@ public class AuthorizationTest {
     // Авторизация пользователя. Вход по кнопке «Личный Кабинет» на главной.
     @Test
     public void authorizationPersonalAccountButtonTest(){
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickPersonalAccountButton(); // Нажать на кнопку "Личный Кабинет"
@@ -60,9 +62,6 @@ public class AuthorizationTest {
     // Авторизация пользователя. Вход через кнопку в форме регистрации.
     @Test
     public void authorizationButtonRegistrationTest(){
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickToInButton(); // Нажать на кнопку "Войти в аккаунт"
@@ -87,9 +86,6 @@ public class AuthorizationTest {
     // Авторизация пользователя. Вход через кнопку в форме восстановления пароля.
     @Test
     public void authorizationRecoverPasswordTest(){
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickToInButton(); // Нажать на кнопку "Войти в аккаунт"

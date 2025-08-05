@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,12 +12,16 @@ public class ConstructorTest {
     private WebDriver driver;
     private static int counter = 1;
 
-    // Раздел «Конструктор». Проверь, что работают переходы к разделам: Булки.
-    @Test
-    public void clickBunsTest(){
+    @BeforeEach
+    public void runDriver(){
         driver = RunBrowsers.getWebDriver(Browser.CHROME);
         driver.manage().window().maximize();
         driver.get("https://stellarburgers.nomoreparties.site/");
+    }
+
+    // Раздел «Конструктор». Проверь, что работают переходы к разделам: Булки.
+    @Test
+    public void clickBunsTest(){
 
         // Кликаем по вкладке "Начинки"
         // (попробуйте убрать вызов метода click() и посмотреть что произойдет)
@@ -56,9 +61,6 @@ public class ConstructorTest {
     // Раздел «Конструктор». Проверь, что работают переходы к разделам: Соусы.
     @Test
     public void clickSaucesTest(){
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         // Кликаем по вкладке "Начинки"
         // (попробуйте убрать вызов метода click() и посмотреть что произойдет)
@@ -97,9 +99,6 @@ public class ConstructorTest {
     // Раздел «Конструктор». Проверь, что работают переходы к разделам: Начинки.
     @Test
     public void clickFillingsTest(){
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         // Кликаем по вкладке "Начинки"
         // (попробуйте убрать вызов метода click() и посмотреть что произойдет)

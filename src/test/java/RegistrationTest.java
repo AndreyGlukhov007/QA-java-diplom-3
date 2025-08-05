@@ -1,6 +1,7 @@
 import POM.AuthorizationPOM;
 import POM.MainPagePOM;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,13 @@ public class RegistrationTest {
     private String emailTest = "test"+getCurrentDateTime()+"@mail.ru";
     private String nameTest = "name" + getCurrentDateTime();
 
+    @BeforeEach
+    public void runDriver(){
+        driver = RunBrowsers.getWebDriver(Browser.CHROME);
+        driver.manage().window().maximize();
+        driver.get("https://stellarburgers.nomoreparties.site/");
+    }
+
     //Этот метод нужен чтобы создавать уникальных пользователей. К логину и имени добавляется актуальная дата и время (часы, минуты, секунды).
     public String getCurrentDateTime() {
         // Получаем текущие дату и время
@@ -29,27 +37,9 @@ public class RegistrationTest {
         return now.format(formatter);
     }
 
-//    @BeforeEach
-//    public void optionsForTests(){
-//        /*
-//        Я оставил строчки 24 и 25 для того чтобы проверить работу браузера GoogleChrome. Я раскомментирную строчки 24 и 25 и закомментирую строчку 26, и тем самым запущу
-//        тесты в GoogleChrome. Возможно есть более изящный способ провести кроссбраузерное тестирование, но я только учусь и о других способах не знаю. Если для прохождения
-//        спринта мне нужно будет удалить 24 и 25 строчку я это сделаю.
-//         */
-//        ChromeOptions options =  new ChromeOptions();
-//        driver = new ChromeDriver(options);
-//        //driver = new FirefoxDriver();
-//        driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-//        driver.get("https://stellarburgers.nomoreparties.site/");
-//    }
-
     // Регистрация пользователя.
     @Test
     public void registrationTest() throws InterruptedException {
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickToInButton(); // Нажать на кнопку "Войти в аккаунт"
@@ -83,9 +73,6 @@ public class RegistrationTest {
     // Регистрация пользователя. Ошибку для некорректного пароля. Минимальный пароль — шесть символов.
     @Test
     public void registrationErrorPasswordTest() {
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
-        driver.manage().window().maximize();
-        driver.get("https://stellarburgers.nomoreparties.site/");
 
         MainPagePOM mainPagePOM = new MainPagePOM(driver); // Зайти на главную страницу
         mainPagePOM.clickToInButton(); // Нажать на кнопку "Войти в аккаунт"
