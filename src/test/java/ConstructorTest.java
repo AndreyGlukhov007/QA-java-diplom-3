@@ -14,7 +14,9 @@ public class ConstructorTest {
 
     @BeforeEach
     public void runDriver(){
-        driver = RunBrowsers.getWebDriver(Browser.CHROME);
+        String browserEvn = System.getenv("BROWSER");
+        Browser browser = browserEvn == null ? Browser.CHROME : Browser.valueOf(browserEvn.toUpperCase());
+        driver = RunBrowsers.getWebDriver(browser);
         driver.manage().window().maximize();
         driver.get("https://stellarburgers.nomoreparties.site/");
     }
